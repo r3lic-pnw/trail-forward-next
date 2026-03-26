@@ -1,16 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Abril_Fatface } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Abril_Fatface } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import NavMenu from "@/components/NavMenu";
+import Image from "next/image";
 
 const abrilFatface = Abril_Fatface({
   weight: ["400"],
@@ -62,29 +54,33 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      // className={` ${geistSans.variable} ${geistMono.variable} antialiased`}
-      className={`antialiased ${abrilFatface.variable}`}
-    >
+    <html lang="en" className={`antialiased ${abrilFatface.variable}`}>
       <body className="font-main">
-        <header className="flex flex-row justify-evenly items-center p-4 bg-amber-300 text-amber-950 ">
-          <div className="justify-self-start w-1/12">
-            <img
-              src="/trail-forward-logo.png"
+        <header className="relative flex flex-row justify-evenly items-center pl-4 pr-4 pt-2 pb-2 bg-amber-300 text-amber-950">
+          <div className="justify-self-start w-2/12 max-w-35 min-w-14">
+            <Image
+              src="https://1bpfird42eanbnd7.public.blob.vercel-storage.com/logo.png"
               alt="Trail Forward Logo"
-              // className="w-1/12"
+              width={100}
+              height={100}
+              className="w-full h-auto"
             />
           </div>
-          <h1 className="text-center grow font-bold text-[3em]">
+          <h1 className="text-center grow font-bold text-[2em] sm:text-[3em]">
             Trail Forward
           </h1>
+          <NavMenu></NavMenu>
         </header>
         {children}
       </body>
