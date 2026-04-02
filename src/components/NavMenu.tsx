@@ -28,7 +28,7 @@ export default function NavMenu() {
       <nav
         id="main-nav"
         aria-label="Main Navigation"
-        className="absolute top-full right-0 p-1 w-sm bg-amber-300 border-2 border-amber-900"
+        className="absolute top-full right-0 z-10 p-1 w-sm bg-amber-300 border-2 border-amber-900"
         style={{ display: isOpen ? "block" : "none" }}>
         <ul onClick={() => setIsOpen(false)}>
           <li>
