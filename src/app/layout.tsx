@@ -3,6 +3,7 @@ import { Abril_Fatface } from "next/font/google";
 import "./globals.css";
 import NavMenu from "@/components/NavMenu";
 import Image from "next/image";
+import Link from "next/link";
 
 const abrilFatface = Abril_Fatface({
   weight: ["400"],
@@ -66,23 +67,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`antialiased ${abrilFatface.variable}`}>
-      <body className="font-main">
+      <body className="font-main flex flex-col h-screen">
         <header className="relative flex flex-row justify-evenly items-center pl-4 pr-4 pt-2 pb-2 bg-amber-300 text-amber-950">
           <div className="justify-self-start w-2/12 max-w-35 min-w-14">
-            <Image
-              src="https://1bpfird42eanbnd7.public.blob.vercel-storage.com/logo.png"
-              alt="Trail Forward Logo"
-              width={100}
-              height={100}
-              className="w-full h-auto"
-            />
+            <Link href={"/"}>
+              <Image
+                src="https://1bpfird42eanbnd7.public.blob.vercel-storage.com/logo.png"
+                alt="Trail Forward Logo"
+                width={100}
+                height={100}
+                className="w-full h-auto"
+              />
+            </Link>
           </div>
           <h1 className="text-center grow font-bold text-[2em] sm:text-[3em]">
             Trail Forward
           </h1>
           <NavMenu></NavMenu>
         </header>
-        {children}
+        <div className="flex-1 min-h-0">{children}</div>
       </body>
     </html>
   );
